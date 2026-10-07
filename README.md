@@ -34,7 +34,7 @@ Paste up to 300 domains or email addresses, sort by score, and export a CSV. You
 ## How it works
 
 - **No backend.** All lookups go from your browser to Cloudflare's DNS-over-HTTPS JSON API (`cloudflare-dns.com/dns-query`). Nothing is logged or stored.
-- `checks.js` is pure logic with the resolver injected, so the whole engine is unit-tested offline against fake DNS zones (`test/checks.test.mjs`, run with `node --test`).
+- `checks.js` is pure logic with the resolver injected, so the whole engine is unit-tested offline against fake DNS zones (`test/checks.test.mjs`, run with `node --test test/checks.test.mjs`).
 - Lookups are cached per run and DKIM selectors are probed in parallel. Bulk mode runs 4 domains at a time.
 - Plain HTML, CSS and ES modules. No build step, no dependencies, hosted on GitHub Pages.
 
@@ -48,7 +48,7 @@ test/              18 unit tests (SPF recursion/limits/loops, DMARC inheritance,
 
 ```bash
 python3 -m http.server 8000   # then open http://localhost:8000
-node --test test/             # run the tests
+node --test test/checks.test.mjs   # run the tests
 ```
 
 ## Scoring
